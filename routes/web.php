@@ -37,7 +37,6 @@ Route::get('contact', function () {
 //     return 'Teacher Details';
 // });
 
-
 Route::prefix('details')->group(function () {
     Route::get('student', function () {
         return 'Student Details';
@@ -48,4 +47,10 @@ Route::prefix('details')->group(function () {
     })->name('teacher.details');
 });
 
+Route::get('student/{id}/{name}', function ($id, $name) {
+    return "Student ID: $id, Name: $name";
+})->name('student.info');
 
+Route::fallback(function () {
+    return 'Page Not Found';
+});
