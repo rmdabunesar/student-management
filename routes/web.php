@@ -13,44 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', function () {
-    return 'hello world';
+    return view('welcome');
 });
 
-Route::get('about', function () {
-    return 'About Us';
+Route::get('about-us/{name}/{email}', function ($name, $email) {
+    // $name  = 'John Doe';
+    // $email = 'john.doe@example.com';
+    // return view('aboutus', compact('name', 'email'));
+    // return view('aboutus')->with('name', $name)->with('email', $email);
+    return view('aboutus', ['name' => $name, 'email' => $email]);
+
 });
 
-Route::get('contact', function () {
-    return 'Contact Us';
-});
-
-// Route::get('details/student', function () {
-//     return 'Student Details';
-// });
-
-// Route::get('details/teacher', function () {
-//     return 'Teacher Details';
-// });
-
-Route::prefix('details')->group(function () {
-    Route::get('student', function () {
-        return 'Student Details';
-    })->name('student.details');
-
-    Route::get('teacher', function () {
-        return 'Teacher Details';
-    })->name('teacher.details');
-});
-
-Route::get('student/{id}/{name}', function ($id, $name) {
-    return "Student ID: $id, Name: $name";
-})->name('student.info');
-
-Route::fallback(function () {
-    return 'Page Not Found';
-});
+Route::view('contact-us/{name}/{email}', 'contactus');
