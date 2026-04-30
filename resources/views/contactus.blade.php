@@ -7,5 +7,8 @@
         <p>This is the Contact Us page.</p>
         <p>Name: {{ request()->name }}</p>
         <p>Email: {{ request()->email }}</p>
+
+
+        @include('SubViews.Input', ['name'=> request()->name])
     </body>
 </html>

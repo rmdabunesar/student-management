@@ -21,5 +21,6 @@
             <p>Welcome, {{ auth()->user()->name }}!</p>
         @endauth
 
+        @include('SubViews.Input', ['name' => 'John Doe'])
     </body>
 </html>
