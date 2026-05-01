@@ -16,6 +16,7 @@
 <div class="content">
     <h2>About Us</h2>
     <p>We are building a simple Laravel application with clean structure and reusable templates.</p>
+    <p>Student ID: {{$id}} </p><p>Student Name: {{$name}} </p>
 </div>
 
 @endsection
