@@ -1,26 +1,27 @@
-<html>
-    <head>
-        <title>About Us</title>
-    </head>
-    <body>
-        {{-- This is the About Us page --}}
-        <h1>About Us</h1>
-        <p>This is the About Us page.</p>
-        <p>Name: {{ $name }}</p>
-        <p>Email: {{ $email }}</p>
+@extends('layouts.app')
 
-        @for($i = 0; $i < 5; $i++)
-            <p>iteration: {{ $i }}</p>
-        @endfor
+@section('title', 'About Us')
 
-        @if($name === 'Jhon-Deo')
-            <p>Hello, Jhon-Deo!</p>
-        @endif
+@section('content')
 
-        @auth
-            <p>Welcome, {{ auth()->user()->name }}!</p>
-        @endauth
+<div class="sidebar">
+    <h2>About Sidebar</h2>
+    <ul>
+        <li>Our Story</li>
+        <li>Mission</li>
+        <li>Vision</li>
+    </ul>
+</div>
 
-        @include('SubViews.Input', ['name' => 'John Doe'])
-    </body>
-</html>
+<div class="content">
+    <h2>About Us</h2>
+    <p>We are building a simple Laravel application with clean structure and reusable templates.</p>
+</div>
+
+@endsection
+
+@push('scripts')
+<script>
+    console.log('About page loaded');
+</script>
+@endpush
