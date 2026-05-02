@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeachersController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Teachers;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('about-us', 'aboutus');
-
-Route::view('contact-us', 'contactus');
-
-Route::controller(StudentController::class)->group(function () {
-    Route::get('students', 'index');
-    Route::get('students/{id}/{name}', 'aboutUs');
-});
-
-Route::get('test', App\Http\Controllers\TestController::class);
-
-Route::resource('second-test', App\Http\Controllers\SecondTestController::class);
+Route::get('teachers', [TeachersController::class, 'index']);
+Route::get('add-teacher', [TeachersController::class, 'add']);
+Route::get('show-teacher/{id}', [TeachersController::class, 'show']);
+Route::get('update-teacher/{id}', [TeachersController::class, 'update']);
+Route::get('delete-teacher/{id}', [TeachersController::class, 'delete']);
