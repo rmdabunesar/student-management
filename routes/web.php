@@ -26,3 +26,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('students', 'index');
     Route::get('students/{id}/{name}', 'aboutUs');
 });
+
+Route::get('test', App\Http\Controllers\TestController::class);
+
+Route::resource('second-test', App\Http\Controllers\SecondTestController::class);
