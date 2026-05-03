@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('age');
+            $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['male', 'female', 'other']);
+            $table->integer('score');
             $table->timestamps();
         });
     }
