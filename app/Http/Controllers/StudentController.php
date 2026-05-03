@@ -7,14 +7,14 @@ class StudentController extends Controller
 {
     public function addData()
     {
-        $item                = new Student();
-        $item->name          = 'Jhon Wick';
-        $item->email         = 'jhonwick@example.com';
-        $item->age           = 26;
-        $item->date_of_birth = '2004-01-01';
-        $item->gender        = 'Male';
-        $item->score         = 80;
-        $item->save();
+        // $item                = new Student();
+        // $item->name          = 'Jhon Wick';
+        // $item->email         = 'jhonwick@example.com';
+        // $item->age           = 26;
+        // $item->date_of_birth = '2004-01-01';
+        // $item->gender        = 'Male';
+        // $item->score         = 80;
+        // $item->save();
 
         return "Data Added Successfully";
     }
@@ -60,6 +60,20 @@ class StudentController extends Controller
         // $items = Student::whereNotIn('score', [80, 85, 88])->get();
         // $items = Student::whereAny(['age', 'score'], '=', ['20', '85'])->get();
         $items = Student::whereAll(['age', 'score'], '=', ['20', '85'])->get();
+
+        return $items;
+    }
+
+    public function queryScope()
+    {
+        $items = Student::female(20)->get();
+
+        return $items;
+    }
+
+    public function secondQuery()
+    {
+        $items = Student::female(20)->get();
 
         return $items;
     }

@@ -25,3 +25,5 @@ Route::get('get-data', [StudentController::class, 'getData']);
 Route::get('where-condition', [StudentController::class, 'whereCondition']);
 Route::get('update-data', [StudentController::class, 'updateData']);
 Route::get('delete-data', [StudentController::class, 'deleteData']);
+Route::get('query-scope', [StudentController::class, 'queryScope']);
+Route::get('second-query', [StudentController::class, 'secondQuery']);
