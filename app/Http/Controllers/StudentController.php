@@ -22,9 +22,9 @@ class StudentController extends Controller
     public function getData()
     {
         // $items = Student::all();
-        // $items = Student::where('id', '>', 1)->get();
-        // $items = Student::select('name', 'email')->where('id', '>', 2)->get();
-        $items = Student::select('name', 'email')->find(3);
+        // $items = Student::onlyTrashed()->get();
+        // $items = Student::withTrashed()->get();
+        $items = Student::withTrashed()->find(1)->restore();
 
         return $items;
     }
@@ -41,8 +41,8 @@ class StudentController extends Controller
 
     public function deleteData()
     {
-        $item = Student::findOrFail(4);
-        $item->delete();
+        // Student::findOrFail(1)->delete();
+        Student::findOrFail(1)->forceDelete();
 
         return "Data Deleted Successfully";
     }
