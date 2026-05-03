@@ -22,5 +22,6 @@ Route::get('/', function () {
 
 Route::get('add-data', [StudentController::class, 'addData']);
 Route::get('get-data', [StudentController::class, 'getData']);
+Route::get('where-condition', [StudentController::class, 'whereCondition']);
 Route::get('update-data', [StudentController::class, 'updateData']);
 Route::get('delete-data', [StudentController::class, 'deleteData']);

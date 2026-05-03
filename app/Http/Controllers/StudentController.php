@@ -1,72 +1,66 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
     public function addData()
     {
-        DB::table('students')->insert([
-            [
-                'name'          => 'John Doe',
-                'email'         => 'johndoe@example.com',
-                'age'           => 20,
-                'date_of_birth' => '2004-01-01',
-                'gender'        => 'Male',
-                'score'         => 85,
-            ],
-            [
-                'name'          => 'Jane Smith',
-                'email'         => 'janesmith@example.com',
-                'age'           => 22,
-                'date_of_birth' => '2002-05-15',
-                'gender'        => 'Female',
-                'score'         => 92,
-            ],
-            [
-                'name'          => 'Alice Johnson',
-                'email'         => 'alicejohnson@example.com',
-                'age'           => 21,
-                'date_of_birth' => '2003-08-20',
-                'gender'        => 'Female',
-                'score'         => 88,
-            ],
-        ]);
+        $item                = new Student();
+        $item->name          = 'Jhon Wick';
+        $item->email         = 'jhonwick@example.com';
+        $item->age           = 26;
+        $item->date_of_birth = '2004-01-01';
+        $item->gender        = 'Male';
+        $item->score         = 80;
+        $item->save();
+
         return "Data Added Successfully";
     }
 
     public function getData()
     {
-        $students = DB::table('students')
-            // ->select('name', 'email')
-            // ->where('id', '>', 15)
-            // ->orWhere('id', '=', 14)
-            // ->get();
-            // ->where('score', '>', 90)
-            // ->count();
-            // ->max('score');
-            // ->min('score');
-            ->avg('score');
+        // $items = Student::all();
+        // $items = Student::where('id', '>', 1)->get();
+        // $items = Student::select('name', 'email')->where('id', '>', 2)->get();
+        $items = Student::select('name', 'email')->find(3);
 
-        return $students;
+        return $items;
     }
 
     public function updateData()
     {
-        DB::table('students')
-            ->where('id', 15)
-            ->update(['name' => 'Updated Name']);
+        $item        = Student::find(4);
+        $item->name  = 'Jhon Sina';
+        $item->email = 'jhonsina@example.com';
+        $item->update();
 
         return "Data Updated Successfully";
     }
 
     public function deleteData()
     {
-        DB::table('students')
-            ->where('id', 15)
-            ->delete();
+        $item = Student::findOrFail(4);
+        $item->delete();
 
         return "Data Deleted Successfully";
+    }
+
+    public function whereCondition()
+    {
+        // $items = Student::where('score', '<', 90)
+        // ->where('age', '>', 25)
+        // ->orWhere('name', 'like', '%Jhon%')
+        // ->get();
+
+        // $items = Student::whereBetween('score', [80, 90])->get();
+        // $items = Student::whereNotBetween('score', [80, 90])->get();
+        // $items = Student::whereIn('score', [80, 85, 88])->get();
+        // $items = Student::whereNotIn('score', [80, 85, 88])->get();
+        // $items = Student::whereAny(['age', 'score'], '=', ['20', '85'])->get();
+        $items = Student::whereAll(['age', 'score'], '=', ['20', '85'])->get();
+
+        return $items;
     }
 }
