@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('age');
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female', 'other']);
-            $table->integer('score');
+            $table->integer('score')->numberBetween(40, 100);
             $table->timestamps();
         });
     }

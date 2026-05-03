@@ -13,6 +13,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about-us">About</a></li>
         <li><a href="/contact-us">Contact</a></li>
+        <li><a href="/students">Students</a></li>
     </ul>
 </header>
 

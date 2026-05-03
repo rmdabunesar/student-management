@@ -20,10 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('add-data', [StudentController::class, 'addData']);
-Route::get('get-data', [StudentController::class, 'getData']);
-Route::get('where-condition', [StudentController::class, 'whereCondition']);
-Route::get('update-data', [StudentController::class, 'updateData']);
-Route::get('delete-data', [StudentController::class, 'deleteData']);
-Route::get('query-scope', [StudentController::class, 'queryScope']);
-Route::get('second-query', [StudentController::class, 'secondQuery']);
+Route::prefix('students')->controller(StudentController::class)->group(function () {
+    Route::get('/', 'index');
+});

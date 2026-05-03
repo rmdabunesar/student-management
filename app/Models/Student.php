@@ -14,14 +14,4 @@ class Student extends Model
         'created_at',
         'updated_at',
     ];
-
-    public function scopeMale($query, $age = 20)
-    {
-        return $query->where('gender', 'male')->where('age', '=', $age);
-    }
-
-    public function scopeFemale($query, $age = 20)
-    {
-        return $query->where('gender', 'female')->where('age', '=', $age);
-    }
 }
