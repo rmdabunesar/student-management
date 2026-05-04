@@ -54,6 +54,13 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="pagination">
+            {{ $students
+            ->appends(request()->query())
+            ->links('pagination::bootstrap-5') }}
+        </div>
+
     </div>
 </div>
 
