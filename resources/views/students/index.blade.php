@@ -3,25 +3,15 @@
 @section('title', 'Students')
 
 @section('content')
-
-<div class="sidebar">
-    <h2>Sidebar</h2>
-    <ul>
-        <li>Our Story</li>
-        <li>Mission</li>
-        <li>Vision</li>
-    </ul>
-</div>
-
-<div class="content">
     <h2>Students</h2>
 
-    <form action="{{ URL('students') }}" method="GET">
-        <input type="text" name="search" id="search" placeholder="Search students...">
+    <form action="{{ url('students') }}" method="GET">
+        <input type="text" name="search" placeholder="Search students...">
         <button type="submit">Search</button>
+        <a href="{{ url('/students/add') }}" role="button">Add Student</a>
     </form>
 
-    <div class="table-wrapper">
+    <figure>
         <table>
             <thead>
                 <tr>
@@ -37,37 +27,29 @@
             </thead>
 
             <tbody>
-                 @foreach ($students as $student)
-                    <tr>
-                        <td>{{ $student->id }}</td>    
-                        <td>{{ $student->name }}</td>
-                        <td>{{ $student->email }}</td>
-                        <td>{{ $student->age }}</td>
-                        <td>{{ $student->date_of_birth }}</td>
-                        <td>{{ $student->gender }}</td>
-                        <td>{{ $student->score }}</td>
-                        <td>
-                            <a href="#" class="action-btn edit-btn">Edit</a>
-                            <a href="#" class="action-btn delete-btn">Delete</a>
-                        </td>
-                    </tr>
+                @foreach ($students as $student)
+                <tr>
+                    <td>{{ $student->id }}</td>    
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->age }}</td>
+                    <td>{{ $student->date_of_birth }}</td>
+                    <td>{{ $student->gender }}</td>
+                    <td>{{ $student->score }}</td>
+                    <td>
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
+    </figure>
 
-        <div class="pagination">
-            {{ $students
+    <nav>
+        {{ $students
             ->appends(request()->query())
             ->links('pagination::bootstrap-5') }}
-        </div>
-
-    </div>
-</div>
+    </nav>
 
 @endsection
-
-@push('scripts')
-<script>
-    console.log('Students page loaded');
-</script>
-@endpush
