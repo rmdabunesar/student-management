@@ -32,16 +32,31 @@ class StudentController extends Controller
 
     public function create(Request $request)
     {
-        $student                = new Student();
-        $student->name          = $request->name;
-        $student->email         = $request->email;
-        $student->age           = $request->age;
-        $student->date_of_birth = $request->date_of_birth;
-        $student->gender        = $request->gender;
-        $student->score         = $request->score;
-        $student->save();
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'email'         => 'required|email|unique:students,email',
+            'age'           => 'required|integer|min:1',
+            'date_of_birth' => 'required|date',
+            'gender'        => 'required|in:male,female',
+            'score'         => 'required|numeric|min:0|max:100',
+        ], [
+            'name.required'          => 'Name is required.',
+            'email.required'         => 'Email is required.',
+            'email.email'            => 'Enter a valid email address.',
+            'email.unique'           => 'This email is already taken.',
+            'age.required'           => 'Age is required.',
+            'age.integer'            => 'Age must be a number.',
+            'date_of_birth.required' => 'Date of birth is required.',
+            'gender.required'        => 'Gender is required.',
+            'score.required'         => 'Score is required.',
+            'score.numeric'          => 'Score must be a number.',
+            'score.min'              => 'Score cannot be less than 0.',
+            'score.max'              => 'Score cannot be more than 100.',
+        ]);
 
-        return redirect('students');
+        Student::create($validated);
+
+        return redirect()->route('students.index');
     }
 
     public function edit($id)
@@ -53,14 +68,38 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $student                = Student::findOrFail($id);
-        $student->name          = $request->name;
-        $student->email         = $request->email;
-        $student->age           = $request->age;
-        $student->date_of_birth = $request->date_of_birth;
-        $student->gender        = $request->gender;
-        $student->score         = $request->score;
-        $student->update();
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'email'         => 'required|email|unique:students,email,' . $id,
+            'age'           => 'required|integer|min:1',
+            'date_of_birth' => 'required|date',
+            'gender'        => 'required|in:male,female',
+            'score'         => 'required|numeric|min:0|max:100',
+        ], [
+            'name.required'          => 'Name is required.',
+            'email.required'         => 'Email is required.',
+            'email.email'            => 'Enter a valid email address.',
+            'email.unique'           => 'This email is already taken.',
+            'age.required'           => 'Age is required.',
+            'age.integer'            => 'Age must be a number.',
+            'date_of_birth.required' => 'Date of birth is required.',
+            'gender.required'        => 'Gender is required.',
+            'score.required'         => 'Score is required.',
+            'score.numeric'          => 'Score must be a number.',
+            'score.min'              => 'Score cannot be less than 0.',
+            'score.max'              => 'Score cannot be more than 100.',
+        ]);
+
+        $student = Student::findOrFail($id);
+        $student->update($validated);
+
+        return redirect()->route('students.index');
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
 
         return redirect('students');
     }

@@ -5,9 +5,19 @@
 @section('content')
 
     <section>
-        <header>
-            <h3>Student Registration</h3>
-        </header>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div>
+            <h5>Student Registration</h5>
+        </div>
 
         <form action="{{ url('students/create') }}" method="POST" enctype="multipart/form-data">
             @csrf
