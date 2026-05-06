@@ -37,7 +37,7 @@
                     <td>{{ $student->gender }}</td>
                     <td>{{ $student->score }}</td>
                     <td>
-                        <a href="#">Edit</a>
+                        <a href="{{ URL('students/edit', $student->id) }}">Edit</a>
                         <a href="#">Delete</a>
                     </td>
                 </tr>

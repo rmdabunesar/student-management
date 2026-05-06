@@ -24,19 +24,15 @@
             <label for="date_of_birth">Date of Birth</label>
             <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}">
 
-            <fieldset>
-                <legend>Gender</legend>
+            <div>
+                <p>Gender</p>
 
-                <label>
-                    <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
-                    Male
-                </label>
+                <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
+                <label for="male">Male</label>
 
-                <label>
-                    <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
-                    Female
-                </label>
-            </fieldset>
+                <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
+                <label for="female">Female</label>
+            </div>
 
             <label for="score">Score</label>
             <input type="number" id="score" name="score" value="{{ old('score') }}">

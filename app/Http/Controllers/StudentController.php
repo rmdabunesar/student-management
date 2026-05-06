@@ -44,4 +44,24 @@ class StudentController extends Controller
         return redirect('students');
     }
 
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+
+        return view('students.edit', compact('student'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student                = Student::findOrFail($id);
+        $student->name          = $request->name;
+        $student->email         = $request->email;
+        $student->age           = $request->age;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->gender        = $request->gender;
+        $student->score         = $request->score;
+        $student->update();
+
+        return redirect('students');
+    }
 }
