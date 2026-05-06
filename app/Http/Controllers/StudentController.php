@@ -25,7 +25,7 @@ class StudentController extends Controller
                     }
                 });
             })
-            ->orderBy('id', 'asc')
+            ->orderBy('id', 'desc')
             ->paginate(10)
             ->withQueryString();
 
@@ -41,6 +41,7 @@ class StudentController extends Controller
         $student->date_of_birth = $request->date_of_birth;
         $student->gender        = $request->gender;
         $student->score         = $request->score;
+        $student->image         = $request->hasFile('image') ? $request->file('image')->store('photos', 'public') : null;
         $student->save();
 
         return redirect('students');

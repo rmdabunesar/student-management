@@ -23,6 +23,7 @@ class StudentFactory extends Factory
             'date_of_birth' => $this->faker->date('Y-m-d'),
             'gender' => $this->faker->randomElement(['male', 'female', 'other']),
             'score' => $this->faker->numberBetween(40, 100),
+            'image' => $this->faker->imageUrl(200, 200, 'people', true, 'student'),
         ];
     }
 }

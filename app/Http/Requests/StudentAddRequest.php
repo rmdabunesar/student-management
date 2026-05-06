@@ -28,6 +28,7 @@ class StudentAddRequest extends FormRequest
             'date_of_birth' => 'required|date',
             'gender'        => 'required|in:male,female',
             'score'         => 'required|numeric|min:0|max:100',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -46,6 +47,9 @@ class StudentAddRequest extends FormRequest
             'score.numeric'          => 'Score must be a number.',
             'score.min'              => 'Score cannot be less than 0.',
             'score.max'              => 'Score cannot be more than 100.',
+            'image.image'           => 'The file must be an image.',
+            'image.mimes'           => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.max'             => 'The image may not be greater than 2MB.',
         ];
     }
 }

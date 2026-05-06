@@ -15,6 +15,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -29,6 +30,16 @@
             <tbody>
                 @foreach ($students as $student)
                 <tr>
+                    <td>
+                        @if ($student->image)
+                            <img src="{{ Str::startsWith($student->image, 'http') 
+                                ? $student->image 
+                                : asset('storage/'.$student->image) }}" 
+                                width="50"
+                                height="50"
+                            >
+                        @endif
+                    </td>
                     <td>{{ $student->id }}</td>    
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>

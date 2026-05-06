@@ -47,6 +47,9 @@
             <label for="score">Score</label>
             <input type="number" id="score" name="score" value="{{ old('score') }}">
 
+            <label for="image">Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
             <button type="submit">Submit</button>
         </form>
     </section>
